@@ -19,7 +19,7 @@
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/news_details_appbar_height"
-                app:contentScrim="@color/primary"
+                app:contentScrim="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView

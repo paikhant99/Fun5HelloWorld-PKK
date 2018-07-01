@@ -74,7 +74,7 @@
             android:clickable="true"
             android:foreground="@drawable/ripple"
             android:text="4 Likes - 5 Comments - Sent to 6 people"
-            android:textColor="@color/primary"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_regular" />
 
         <LinearLayout
