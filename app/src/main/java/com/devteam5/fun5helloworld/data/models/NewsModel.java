@@ -37,6 +37,7 @@ public class NewsModel {
 //        mDataAgent= OkHttpDataAgentImpl.getmObjInstance();
         mDataAgent = RetrofitDataAgentImpl.getInstance();
 
+        mPage=1;
         mNewsMap=new HashMap<>();
         EventBus.getDefault().register(this);
     }
@@ -50,16 +51,15 @@ public class NewsModel {
 
     public void forceRefreshNewsList(){
         mPage=1;
-        mDataAgent.loadNewsList(mPage, DUMMY_ACCESS_TOKEN,false);
-    }
-
-    public void loadNewsList() {
         mDataAgent.loadNewsList(mPage, DUMMY_ACCESS_TOKEN,true);
     }
 
+    public void loadNewsList() {
+        mDataAgent.loadNewsList(mPage, DUMMY_ACCESS_TOKEN,false);
+    }
+
     public NewsVO getNewsById(String newsId){
-        return null;//TODO remove this after testing empty view layout in news details screen
-//        return mNewsMap.get(newsId);
+        return mNewsMap.get(newsId);
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)

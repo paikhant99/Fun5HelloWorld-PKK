@@ -104,9 +104,6 @@ public class NewsListActivity extends BaseActivity implements NewsDelegate{
             }
         });
 
-        vpEmpty.setEmptyData(R.drawable.empty_data_placeholder,getString(R.string.empty_msg));
-
-
     }
 
     @Override
@@ -153,6 +150,7 @@ public class NewsListActivity extends BaseActivity implements NewsDelegate{
 
     @Subscribe(threadMode = ThreadMode.MAIN) // catch from eventBus in mainThread
     public void onSuccessGetNews(SuccessGetNewsEvent event){
+        vpEmpty.setVisibility(View.GONE);
         mNewsAdapter.appendNewsList(event.getNewsList());
         swipeRefreshLayout.setRefreshing(false);
         Log.d("onSuccessGetNews","onSuccessGetNews"+event.getNewsList());
@@ -160,15 +158,21 @@ public class NewsListActivity extends BaseActivity implements NewsDelegate{
 
     @Subscribe(threadMode = ThreadMode.MAIN) // catch from eventBus in mainThread
     public void onSuccessForceRefreshGetNews(SuccessForceRefreshGetNewsEvent event){
-        mNewsAdapter.appendNewsList(event.getNewsList());
+        mNewsAdapter.setNewsList(event.getNewsList());
         swipeRefreshLayout.setRefreshing(false);
+        vpEmpty.setVisibility(View.GONE);
         Log.d("onSuccessGetNews","onSuccessGetNews"+event.getNewsList());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN) // catch from eventBus in mainThread
     public void onFailGetNews(ApiErrorEvent event){
-        vpEmpty.setVisibility(View.VISIBLE);
-        Snackbar.make(swipeRefreshLayout,event.getMessage(),Snackbar.LENGTH_INDEFINITE).show();
         swipeRefreshLayout.setRefreshing(false);
+//        Snackbar.make(swipeRefreshLayout,event.getMessage(),Snackbar.LENGTH_INDEFINITE).show();
+        if(mNewsAdapter.getItemCount()<=0){
+            vpEmpty.setVisibility(View.VISIBLE);
+        }else{
+            vpEmpty.setVisibility(View.GONE);
+        }
+
     }
 }

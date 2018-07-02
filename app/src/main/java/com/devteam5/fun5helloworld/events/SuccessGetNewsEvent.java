@@ -2,6 +2,7 @@ package com.devteam5.fun5helloworld.events;
 
 import com.devteam5.fun5helloworld.data.vos.NewsVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

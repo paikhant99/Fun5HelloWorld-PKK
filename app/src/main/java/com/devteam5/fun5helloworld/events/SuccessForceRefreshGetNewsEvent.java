@@ -10,10 +10,9 @@ import java.util.List;
 
 public class SuccessForceRefreshGetNewsEvent extends SuccessGetNewsEvent{
 
-    private List<NewsVO> mNewsList;
-
 
     public SuccessForceRefreshGetNewsEvent(List<NewsVO> newsList) {
         super(newsList);
     }
+
 }
